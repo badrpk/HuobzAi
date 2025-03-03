@@ -1,0 +1,42 @@
+nohup: ignoring input
+🚀 localhost (Type: CPU) Ready on HuobzEdge
+ * Serving Flask app 'huobz_edge_node'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.18.22:5050
+Press CTRL+C to quit
+[2025-03-02 13:35:04,580] ERROR in app: Exception on /register [POST]
+Traceback (most recent call last):
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/userland/HuobzAi/huobz_edge_node.py", line 21, in register
+    print(f"✅ Connected to {data['master_node']}")
+KeyError: 'master_node'
+192.168.18.22 - - [02/Mar/2025 13:35:04] "POST /register HTTP/1.1" 500 -
+[2025-03-02 13:55:07,377] ERROR in app: Exception on /register [POST]
+Traceback (most recent call last):
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/userland/.local/lib/python3.9/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/userland/HuobzAi/huobz_edge_node.py", line 21, in register
+    print(f"✅ Connected to {data['master_node']}")
+KeyError: 'master_node'
+192.168.18.45 - - [02/Mar/2025 13:55:07] "POST /register HTTP/1.1" 500 -
+192.168.18.22 - - [02/Mar/2025 14:06:35] "GET /status HTTP/1.1" 404 -
+192.168.18.22 - - [02/Mar/2025 14:08:17] "GET /status HTTP/1.1" 404 -
+192.168.18.22 - - [02/Mar/2025 14:09:46] "GET /status HTTP/1.1" 404 -
+192.168.18.22 - - [02/Mar/2025 14:10:10] "GET /api HTTP/1.1" 404 -
+192.168.18.22 - - [02/Mar/2025 14:13:21] "GET /status HTTP/1.1" 404 -

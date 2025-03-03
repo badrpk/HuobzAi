@@ -1,0 +1,4 @@
+nohup: ignoring input
+❌ Error connecting to http://192.168.1.100:5000: HTTPConnectionPool(host='192.168.1.100', port=5000): Max retries exceeded with url: /process (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x760263a340>: Failed to establish a new connection: [Errno 103] Software caused connection abort'))
+❌ Error connecting to http://192.168.1.101:5000: HTTPConnectionPool(host='192.168.1.101', port=5000): Max retries exceeded with url: /process (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x760263ae20>: Failed to establish a new connection: [Errno 103] Software caused connection abort'))
+❌ Error connecting to http://192.168.1.102:5000: HTTPConnectionPool(host='192.168.1.102', port=5000): Max retries exceeded with url: /process (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76025dd7c0>: Failed to establish a new connection: [Errno 103] Software caused connection abort'))

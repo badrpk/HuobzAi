@@ -1,32 +1,21 @@
-import subprocess
+import threading
+import time
+from ai_trainer import generate_response
+from knowledge_database import flag_incorrect_knowledge
 
-# AI program commands
-commands = {
-    "Assembly": ["./huobz_ai"],
-    "C++": ["./huobz_ai_cpp"],
-    "Python": ["python3", "huobz_ai.py"],
-}
+def ask_ai():
+    while True:
+        question = input("\n💬 Ask a question (or type 'exit' to quit): ")
+        if question.lower() == "exit":
+            break
 
-def get_ai_response(ai_name, cmd, question):
-    """Run an AI program with a question and return the response."""
-    try:
-        result = subprocess.run(cmd + [question], capture_output=True, text=True, timeout=1)
-        return result.stdout.strip()
-    except Exception as e:
-        return "Error: AI crashed or timed out"
+        answer = generate_response(question)
+        print(f"\n🤖 Huobz AI: {answer}")
 
-while True:
-    # Ask user for input question
-    question = input("\nEnter your question (or type 'exit' to quit): ").strip()
-    if question.lower() == "exit":
-        break
+        feedback = input("\n✔️ (t) Correct, (f) Incorrect? ").strip().lower()
+        if feedback == 'f':
+            flag_incorrect_knowledge(question, answer)
 
-    print("\n==== AI Responses ====")
-    
-    responses = {}
-    for ai, cmd in commands.items():
-        response = get_ai_response(ai, cmd, question)
-        responses[ai] = response
-        print(f"\n{ai} AI Response:\n{response}")
-
-    print("\nCopy and paste these responses into our chat to assess performance.")
+if __name__ == "__main__":
+    ai_thread = threading.Thread(target=ask_ai)
+    ai_thread.start()

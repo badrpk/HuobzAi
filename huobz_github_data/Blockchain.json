@@ -1,0 +1,42 @@
+[
+    {
+        "name": "fuel-core",
+        "url": "https://github.com/FuelLabs/fuel-core"
+    },
+    {
+        "name": "go-ethereum",
+        "url": "https://github.com/ethereum/go-ethereum"
+    },
+    {
+        "name": "union",
+        "url": "https://github.com/unionlabs/union"
+    },
+    {
+        "name": "shardeum",
+        "url": "https://github.com/shardeum/shardeum"
+    },
+    {
+        "name": "anoma",
+        "url": "https://github.com/anoma/anoma"
+    },
+    {
+        "name": "hey",
+        "url": "https://github.com/heyverse/hey"
+    },
+    {
+        "name": "bitcoinbook",
+        "url": "https://github.com/bitcoinbook/bitcoinbook"
+    },
+    {
+        "name": "solidity",
+        "url": "https://github.com/ethereum/solidity"
+    },
+    {
+        "name": "Follow",
+        "url": "https://github.com/RSSNext/Follow"
+    },
+    {
+        "name": "ethereumbook",
+        "url": "https://github.com/ethereumbook/ethereumbook"
+    }
+]

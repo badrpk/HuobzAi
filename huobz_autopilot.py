@@ -1,75 +1,97 @@
+import requests
+import json
 import time
-from web_scraper import fetch_latest_web_knowledge
-from knowledge_database import store_knowledge, query_knowledge
-from memory_optimization import optimize_storage
-from ai_trainer import train_huobz_model, generate_response
+import torch
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-# Function to check and optimize storage
-def check_storage():
-    result = optimize_storage()
-    if result is not None:
-        storage_used, total_storage = result
-        print(f"\n💾 **Storage Used:** {storage_used:.2f}% ({total_storage}GB)")
-        if storage_used >= 95:
-            print("⚠️ **Warning:** Storage is at 95%. Initiating automatic compression...")
+# ✅ Load AI Model
+MODEL_NAME = "facebook/bart-large-cnn"  # Example model, adjust as needed
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
+
+# ✅ Use CPU
+device = torch.device("cpu")
+model.to(device)
+
+print("🚀 Huobz AutoPilot AI Started...")
+
+# ✅ Fetch latest research papers (Example API call)
+def fetch_web_knowledge():
+    print("🌍 Fetching latest web knowledge...")
+    response = requests.get("https://api.example.com/research")  # Replace with actual API
+    if response.status_code == 200:
+        return response.json()
     else:
-        print("\n⚠️ **Error:** Storage check failed. Please verify `memory_optimization.py`.")
+        print("❌ Failed to fetch research data")
+        return []
 
-# Function to fetch new knowledge and train AI
-def fetch_and_train():
-    print("\n🌍 **Fetching the latest web knowledge...**\n")
+# ✅ Process and summarize fetched data
+def summarize_text(text):
+    inputs = tokenizer(text, return_tensors="pt", max_length=512, truncation=True)
+    inputs = {key: val.to(device) for key, val in inputs.items()}
     
-    web_data = fetch_latest_web_knowledge()
+    # ✅ Fix min_length and max_length issue
+    min_length = 10
+    max_length = 100
     
-    for entry in web_data:
-        title, content = entry["title"], entry["content"]
-        print(f"🔍 Learning from {entry['url']}... ✅")
-        
-        # Store the extracted knowledge
-        store_knowledge(title, content)
+    # ✅ Ensure min_length < max_length dynamically
+    max_length = max(min_length + 20, max_length)  
+
+    summary_ids = model.generate(
+        inputs["input_ids"],
+        min_length=min_length,
+        max_length=max_length,
+        do_sample=True
+    )
+    return tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+# ✅ Save summaries
+def save_summary(data):
+    with open("data/summary.json", "w") as f:
+        json.dump(data, f)
+    print("💾 Summarized knowledge saved at data/summary.json")
+
+# ✅ Check AI backend server connection
+def check_server(url):
+    try:
+        response = requests.get(url, timeout=5)
+        return response.status_code == 200
+    except requests.exceptions.ConnectionError:
+        return False
+
+# ✅ Backend servers to check
+backend_servers = [
+    "http://192.168.1.100:5000",
+    "http://192.168.1.101:5000",
+    "http://192.168.1.102:5000"
+]
+
+# ✅ Fetch & Process Data
+research_papers = fetch_web_knowledge()
+
+if research_papers:
+    print(f"✅ Fetched {len(research_papers)} research papers")
     
-    print("\n✅ **Knowledge Updated! Training AI...**\n")
-    train_huobz_model()
-
-# Main function for Huobz Autopilot
-def main_autopilot():
-    print("\n🚀 **Huobz Autopilot Mode Activated**\n")
+    summaries = []
+    for paper in research_papers:
+        summaries.append(summarize_text(paper["abstract"]))  # Adjust key as needed
     
-    # Check storage first
-    check_storage()
+    save_summary(summaries)
 
-    while True:
-        fetch_and_train()
+else:
+    print("❌ No research papers fetched!")
 
-        # Display current storage usage
-        check_storage()
+# ✅ Check AI Server Availability
+server_connected = False
 
-        # Display stored knowledge stats
-        knowledge_entries = query_knowledge("")
-        if knowledge_entries:
-            print(f"\n📚 **Stored Knowledge Entries:** {len(knowledge_entries)}")
-        else:
-            print("\n📚 **No stored knowledge yet. Learning in progress...**")
+for server in backend_servers:
+    if check_server(server):
+        print(f"✅ Connected to AI Server: {server}")
+        server_connected = True
+        break
+    else:
+        print(f"❌ Could not connect to {server}")
 
-        print("\n💬 **Ask a question (or type 'exit' to quit):**", end=" ")
-        user_input = input().strip()
-        
-        if user_input.lower() == "exit":
-            print("\n🛑 **Exiting Huobz Autopilot.** Goodbye!\n")
-            break
-        
-        response = generate_response(user_input)
-        print(f"\n🤖 **Huobz AI Answer:** {response}\n")
-        
-        # Auto-train on missing responses
-        if response == "I don't have an answer yet. Learning more...":
-            print("\n🔄 **Updating AI Model with new knowledge...**\n")
-            fetch_and_train()
-
-        # Wait for 5 seconds before next cycle
-        print("\n✅ **Huobz AI Updated. Next scan in 5 seconds...**\n")
-        time.sleep(5)
-
-# Run Huobz Autopilot
-if __name__ == "__main__":
-    main_autopilot()
+if not server_connected:
+    print("⏳ Waiting for next cycle...")
+    time.sleep(30)  # Retry after 30 seconds

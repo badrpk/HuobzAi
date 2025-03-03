@@ -1,0 +1,42 @@
+[
+    {
+        "name": "QuantumKatas",
+        "url": "https://github.com/microsoft/QuantumKatas"
+    },
+    {
+        "name": "awesome-quantum-computing",
+        "url": "https://github.com/desireevl/awesome-quantum-computing"
+    },
+    {
+        "name": "pennylane",
+        "url": "https://github.com/PennyLaneAI/pennylane"
+    },
+    {
+        "name": "classiq-library",
+        "url": "https://github.com/Classiq/classiq-library"
+    },
+    {
+        "name": "QPanda-2",
+        "url": "https://github.com/OriginQ/QPanda-2"
+    },
+    {
+        "name": "ProjectQ",
+        "url": "https://github.com/ProjectQ-Framework/ProjectQ"
+    },
+    {
+        "name": "quantumcomputingbook",
+        "url": "https://github.com/JackHidary/quantumcomputingbook"
+    },
+    {
+        "name": "covalent",
+        "url": "https://github.com/AgnostiqHQ/covalent"
+    },
+    {
+        "name": "QuantumComputing",
+        "url": "https://github.com/corbett/QuantumComputing"
+    },
+    {
+        "name": "qml",
+        "url": "https://github.com/PennyLaneAI/qml"
+    }
+]

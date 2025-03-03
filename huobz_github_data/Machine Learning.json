@@ -1,0 +1,42 @@
+[
+    {
+        "name": "tensorflow",
+        "url": "https://github.com/tensorflow/tensorflow"
+    },
+    {
+        "name": "transformers",
+        "url": "https://github.com/huggingface/transformers"
+    },
+    {
+        "name": "funNLP",
+        "url": "https://github.com/fighting41love/funNLP"
+    },
+    {
+        "name": "ML-For-Beginners",
+        "url": "https://github.com/microsoft/ML-For-Beginners"
+    },
+    {
+        "name": "awesome-machine-learning",
+        "url": "https://github.com/josephmisiti/awesome-machine-learning"
+    },
+    {
+        "name": "scikit-learn",
+        "url": "https://github.com/scikit-learn/scikit-learn"
+    },
+    {
+        "name": "gradio",
+        "url": "https://github.com/gradio-app/gradio"
+    },
+    {
+        "name": "C-Plus-Plus",
+        "url": "https://github.com/TheAlgorithms/C-Plus-Plus"
+    },
+    {
+        "name": "netron",
+        "url": "https://github.com/lutzroeder/netron"
+    },
+    {
+        "name": "linkedin-skill-assessments-quizzes",
+        "url": "https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes"
+    }
+]

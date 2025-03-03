@@ -1,0 +1,42 @@
+[
+    {
+        "name": "nupic-legacy",
+        "url": "https://github.com/numenta/nupic-legacy"
+    },
+    {
+        "name": "mne-python",
+        "url": "https://github.com/mne-tools/mne-python"
+    },
+    {
+        "name": "course-content",
+        "url": "https://github.com/NeuromatchAcademy/course-content"
+    },
+    {
+        "name": "psychopy",
+        "url": "https://github.com/psychopy/psychopy"
+    },
+    {
+        "name": "snntorch",
+        "url": "https://github.com/jeshraghian/snntorch"
+    },
+    {
+        "name": "brainflow",
+        "url": "https://github.com/brainflow-dev/brainflow"
+    },
+    {
+        "name": "awesome-neuroscience",
+        "url": "https://github.com/analyticalmonk/awesome-neuroscience"
+    },
+    {
+        "name": "brian2",
+        "url": "https://github.com/brian-team/brian2"
+    },
+    {
+        "name": "awesome-neural-geometry",
+        "url": "https://github.com/neurreps/awesome-neural-geometry"
+    },
+    {
+        "name": "dcm2niix",
+        "url": "https://github.com/rordenlab/dcm2niix"
+    }
+]
